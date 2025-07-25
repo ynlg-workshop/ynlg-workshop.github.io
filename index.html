@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YNLG 2025 - Young Researchers in Natural Language Generation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        main {
+            background: white;
+            margin: 2rem auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .page {
+            display: none;
+            padding: 3rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: -3rem -3rem 3rem -3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .important-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dates-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .dates-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dates-list li:last-child {
+            border-bottom: none;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+        }
+
+        p, li {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 2rem;
+        }
+
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .organizer-card {
+            text-align: center;
+            padding: 2rem;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .organizer-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .organizer-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .organizer-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .organizer-affiliation {
+            color: #666;
+            font-style: italic;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .page {
+                padding: 2rem 1rem;
+            }
+
+            .important-info {
+                grid-template-columns: 1fr;
+            }
+
+            .organizers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .submission-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .submission-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">YNLG 2025</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" onclick="showPage('home', this)">Home</a></li>
+                <li><a href="#cfp" class="nav-link" onclick="showPage('cfp', this)">Call for Papers</a></li>
+                <li><a href="#organizers" class="nav-link" onclick="showPage('organizers', this)">Organizers</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>YNLG 2025</h1>
+                <p>The 1st Workshop for Young Researchers in Natural Language Generation</p>
+                <p><strong>October 29, 2025 • Hanoi, Vietnam • Part of INLG 2025</strong></p>
+            </div>
+
+            <div class="important-info">
+                <div class="info-card">
+                    <h3>📅 Important Dates</h3>
+                    <ul class="dates-list">
+                        <li><strong>Submissions due:</strong> August 26, 2025</li>
+                        <li><strong>Notification:</strong> September 24, 2025</li>
+                        <li><strong>Camera-ready:</strong> October 3, 2025</li>
+                        <li><strong>Workshop:</strong> October 29, 2025</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>🎯 Target Audience</h3>
+                    <p>Early-career researchers including:</p>
+                    <ul>
+                        <li>PhD students</li>
+                        <li>Master's students</li>
+                        <li>Postdocs new to NLG</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>📝 Submission Format</h3>
+                    <p>2-page position papers including:</p>
+                    <ul>
+                        <li>Research overview</li>
+                        <li>Short biography</li>
+                        <li>Questions for seniors</li>
+                        <li>Roundtable topics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>About YNLG 2025</h2>
+            <p>YNLG aims to foster a welcoming community of early-career researchers in NLG by providing a platform for PhD students and Master's students to present work-in-progress research, receive feedback from senior researchers and peers, and engage in discussions about current trends and future directions in Natural Language Generation.</p>
+
+            <p>The workshop is organized under the auspices of the Special Interest Group on Natural Language Generation (SIGGEN) of the Association for Computational Linguistics (ACL). YNLG 2025 will take place during INLG 2025 at the Vietnam Institute for Advanced Study in Mathematics, Hanoi, Vietnam.</p>
+
+            <h2>Workshop Format</h2>
+            <p>YNLG 2025 will be a full-day, in-person workshop featuring:</p>
+            <ul>
+                <li><strong>Poster Sessions:</strong> Two sessions where participants present their submissions and engage with fellow researchers</li>
+                <li><strong>Keynote Talks:</strong> To be announced</li>
+                <li><strong>Interactive Roundtables:</strong> Small-group discussions on both research topics and practical aspects of academic life</li>
+                <li><strong>Networking Social Event:</strong> An informal evening event with sightseeing and dinner</li>
+            </ul>
+        </div>
+
+        <!-- Call for Papers Page -->
+        <div id="cfp" class="page">
+            <h1>Call for Papers</h1>
+            
+            <p>We invite early-career researchers to submit position papers to the first Workshop for Young Researchers in Natural Language Generation (YNLG 2025), to be held as part of INLG 2025 in Hanoi, Vietnam.</p>
+
+            <p>YNLG aims to foster a welcoming community of early-career researchers in NLG by providing a platform for PhD students and Master's students to present work-in-progress research, receive feedback from senior researchers and peers, and engage in discussions about current trends and future directions in Natural Language Generation.</p>
+
+            <p>The workshop is organized under the auspices of the Special Interest Group on Natural Language Generation (SIGGEN) of the Association for Computational Linguistics (ACL). YNLG 2025 will take place during INLG 2025 (October 29 - November 2, 2025) at the Vietnam Institute for Advanced Study in Mathematics, Hanoi, Vietnam.</p>
+
+            <h2>Important Dates</h2>
+            <p>All deadlines are at <span class="highlight">11:59 PM, UTC-8</span>.</p>
+            <ul>
+                <li><strong>Submissions due:</strong> August 26, 2025</li>
+                <li><strong>Notification of acceptance:</strong> September 24, 2025</li>
+                <li><strong>Camera-ready papers due:</strong> October 3, 2025 (Optional)</li>
+                <li><strong>Workshop:</strong> October 29 (during INLG 2025)</li>
+            </ul>
+
+            <h2>Submission Format</h2>
+            <h3>Position Papers</h3>
+            <p>We invite <strong>2-page position papers (+ unlimited references)</strong> that should include:</p>
+            <ul>
+                <li><strong>Research Overview:</strong> A description of your past, present, and future research plans in NLG</li>
+                <li><strong>Short Biography:</strong> A brief academic biography highlighting your background and research interests</li>
+                <li><strong>Questions for Senior Researchers:</strong> Specific questions you would like to ask senior researchers. These can be related to research or the general PhD experience and future careers. We will anonymize and aggregate these questions and release the answers for all of them with the proceedings of the workshop.</li>
+                <li><strong>Topics for Roundtable Discussions with Peers:</strong> Suggestions for topics you would like to see discussed during the workshop's interactive roundtable sessions</li>
+            </ul>
+
+            <p>The position paper format is designed to facilitate meaningful discussions during the workshop's poster sessions and roundtable discussions, rather than presenting fully completed research. There is no anonymity requirement and participants are encouraged to share their research backgrounds.</p>
+
+            <p><strong>The participants can choose whether they prefer their submission to be published with the workshop proceedings.</strong></p>
+
+            <h2>Topics of Interest</h2>
+            <p>We invite position papers on any topic related to Natural Language Generation, including but not limited to:</p>
+            <ul>
+                <li>Large Language Models (LLMs) for NLG</li>
+                <li>Evaluation and error analysis of NLG systems</li>
+                <li>Explainability and trustworthiness of NLG systems</li>
+                <li>Bias and fairness in NLG systems</li>
+                <li>Data-to-text, concept-to-text, text-to-text, and vision-to-text approaches</li>
+                <li>Grounded language generation</li>
+                <li>NLG in dialogue systems and chatbots</li>
+                <li>Storytelling and narrative generation</li>
+                <li>Summarization and paraphrasing</li>
+                <li>Multimodal and multimedia generation</li>
+                <li>NLG for low-resourced languages</li>
+                <li>Ethical considerations in NLG</li>
+                <li>NLG applications and real-world deployment</li>
+                <li>Computational efficiency of NLG models</li>
+                <li>Content and text planning</li>
+                <li>Surface realization and lexicalization</li>
+            </ul>
+
+            <h2>Submission Instructions</h2>
+            <p>Papers should be submitted through the workshop's submission system: <a href="https://softconf.com/p/ynlg2025" class="submission-link" target="_blank">Submit via SoftConf</a></p>
+            
+            <p>All submissions will receive at least two reviews from our program committee.</p>
+            <p>Papers should follow the ACL formatting guidelines and be submitted as PDF files.</p>
+
+            <div class="contact-info">
+                <h3>Contact</h3>
+                <p>For questions about the workshop or submissions, please contact:<br>
+                <strong>Patricia Schmidtova</strong> (schmidtova@ufal.mff.cuni.cz)</p>
+            </div>
+        </div>
+
+        <!-- Organizers Page -->
+        <div id="organizers" class="page">
+            <h1>Organizers</h1>
+            
+            <div class="organizers-grid">
+                <div class="organizer-card">
+                    <div class="organizer-image">AA</div>
+                    <div class="organizer-name">Alyssa Allen</div>
+                    <div class="organizer-affiliation">The Ohio State University</div>
+                </div>
+
+                <div class="organizer-card">
+                    <div class="organizer-image">NF</div>
+                    <div class="organizer-name">Nils Feldhus</div>
+                    <div class="organizer-affiliation">TU Berlin, BIFOLD</div>
+                </div>
+
+                <div class="organizer-card">
+                    <div class="organizer-image">RH</div>
+                    <div class="organizer-name">Rudali Huidrom</div>
+                    <div class="organizer-affiliation">Dublin City University, ADAPT</div>
+                </div>
+
+                <div class="organizer-card">
+                    <div class="organizer-image">ML</div>
+                    <div class="organizer-name">Michela Lorandi</div>
+                    <div class="organizer-affiliation">Dublin City University, ADAPT</div>
+                </div>
+
+                <div class="organizer-card">
+                    <div class="organizer-image">AS</div>
+                    <div class="organizer-name">Adarsa Sivaprasad</div>
+                    <div class="organizer-affiliation">University of Aberdeen</div>
+                </div>
+
+                <div class="organizer-card">
+                    <div class="organizer-image">PS</div>
+                    <div class="organizer-name">Patricia Schmidtova</div>
+                    <div class="organizer-affiliation">Charles University</div>
+                    <p style="margin-top: 1rem; font-weight: bold; color: #667eea;">Contact Person</p>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p>For any inquiries about the workshop, please contact:</p>
+                <p><strong>Patricia Schmidtova</strong><br>
+                Email: schmidtova@ufal.mff.cuni.cz</p>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">
+                We look forward to welcoming you to YNLG 2025 and fostering the next generation of NLG researchers!
+            </p>
+        </div>
+    </main>
+
+    <script>
+        function showPage(pageId, linkElement) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            linkElement.classList.add('active');
+            
+            // Close mobile menu if open
+            const navLinksContainer = document.querySelector('.nav-links');
+            navLinksContainer.classList.remove('active');
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
