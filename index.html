@@ -317,6 +317,46 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
+
+        .schedule {
+            width: 100%;
+            border-collapse: collapse; /* Merges borders for a cleaner look */
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden; /* Ensures the border-radius clips the background */
+            text-align: left;
+        }
+
+        .schedule th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .schedule td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        /* Zebra-striping for better readability */
+        .schedule tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Hover effect for interactivity, consistent with nav links */
+        .schedule tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Remove border from the last row for a clean finish */
+        .schedule tbody tr:last-child td {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
@@ -326,6 +366,7 @@
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active" onclick="showPage('home', this)">Home</a></li>
                 <li><a href="#cfp" class="nav-link" onclick="showPage('cfp', this)">Call for Papers</a></li>
+                <li><a href="#schedule" class="nav-link" onclick="showPage('schedule', this)">Schedule</a></li>
                 <li><a href="#organizers" class="nav-link" onclick="showPage('organizers', this)">Organizers</a></li>
             </ul>
             <div class="mobile-menu" onclick="toggleMenu()">
@@ -387,7 +428,7 @@
             <p>YNLG 2025 will be a full-day, in-person workshop featuring:</p>
             <ul>
                 <li><strong>Poster Sessions:</strong> Two sessions where participants present their submissions and engage with fellow researchers</li>
-                <li><strong>Keynote Talks:</strong> To be announced</li>
+                <li><strong>Keynote Talks:</strong> <a href="https://davehowcroft.com">David M. Howcroft</a>, <a href="https://www.linkedin.com/in/hadas-kotek-phd">Hadas Kotek</a></li>
                 <li><strong>Interactive Roundtables:</strong> Small-group discussions on both research topics and practical aspects of academic life</li>
                 <li><strong>Networking Social Event:</strong> An informal evening event with sightseeing and dinner</li>
             </ul>
@@ -460,6 +501,90 @@
                 <p>For questions about the workshop or submissions, please contact:<br>
                 <strong>Patricia Schmidtova</strong> (schmidtova@ufal.mff.cuni.cz)</p>
             </div>
+        </div>
+
+        <!-- Schedule Page -->
+        <div id="schedule" class="page">
+            <h1>Schedule</h1>
+
+            <p>The following schedule is preliminary!</p>
+
+            <h2>October 29, 2025</h2>
+
+            <p>All times are GMT+7 (Indochina Time).</p>
+
+            <table class="schedule">
+                <tr>
+                    <th>Time</th>
+                    <th>Item</th>
+                    <th>Speaker</th>
+                </tr>
+                <tr>
+                    <td>09:00-09:15</td>
+                    <td>Short introduction</td>
+                    <td>YNLG Organizers</td>
+                </tr>
+                <tr>
+                    <td>09:15-10:00</td>
+                    <td>Keynote 1</td>
+                    <td>Hadas Kotek</td>
+                </tr>
+                <tr>
+                    <td>10:00-10:15</td>
+                    <td>Coffee break</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10:15-11:00</td>
+                    <td>Roundtable 1: Effectively conducting NLG research <br>(Ideation, Experimental design, Rigor vs. speed)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11:00-12:00</td>
+                    <td>Poster Session</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12:00-13:30</td>
+                    <td>Lunch</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>13:30-14:30</td>
+                    <td>Roundtable 2: Grand challenges in NLG <br>(Evaluation, Factuality, Efficiency)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>14:30-15:15</td>
+                    <td>Keynote 2</td>
+                    <td>David M. Howcroft</td>
+                </tr>
+                <tr>
+                    <td>15:15-15:30</td>
+                    <td>Coffee break</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>15:30-16:15</td>
+                    <td>Roundtable 3: Pathways to impact <br>(Careers, Deployment, Ethics)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>16:15-17:15</td>
+                    <td>Panel Discussion</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>17:15-17:30</td>
+                    <td>Wrap-up</td>
+                    <td>YNLG Organizers</td>
+                </tr>
+                <tr>
+                    <td>17:30-20:30</td>
+                    <td>Social Event</td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
 
         <!-- Organizers Page -->
